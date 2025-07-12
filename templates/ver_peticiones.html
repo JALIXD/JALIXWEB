@@ -2,65 +2,150 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Peticiones recibidas</title>
+  <title>Peticiones Recibidas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #0f172a;
       color: white;
-      font-family: sans-serif;
+      font-family: 'Montserrat', sans-serif;
       padding: 20px;
     }
+
     h1 {
       color: #f472b6;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
     }
+
+    .tabla-container {
+      width: 100%;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.6); /* Negro con opacidad */
+      border-radius: 10px;
+      overflow: hidden;
     }
+    
+
     th, td {
-      padding: 10px;
+      padding: 12px;
       border-bottom: 1px solid #334155;
+      text-align: left;
+      font-size: 1rem;
     }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.6); /* Negro con opacidad */
+      color: #f9fafb;
+      font-weight: 600;
+    }
+
     tr:hover {
-      background-color: #1e293b;
+      background-color: #334155;
     }
+
     a {
-      display: inline-block;
-      margin-top: 20px;
+      display: block;
+      margin: 30px auto 0;
       text-decoration: none;
       background-color: #f472b6;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 10px;
+      font-weight: bold;
+      width: fit-content;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #ec4899;
+    }
+
+    /* Diseño tipo "tarjeta" en móviles */
+    @media (max-width: 768px) {
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+  
+      thead {
+        display: none;
+      }
+  
+      tr {
+        border-radius: 10px;
+        margin: 1rem auto;
+        padding: 12px;
+        max-width: 90%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+  
+      td {
+        border: none;
+        padding: 8px 10px;
+        font-size: 0.9rem;
+        position: relative;
+      }
+  
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: bold;
+        color: #94a3b8;
+        margin-bottom: 4px;
+        font-size: 0.8rem;
+      }
+  
+      h1 {
+        font-size: 1.4rem;
+      }
+  
+      a {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+      }
     }
   </style>
 </head>
 <body>
   <h1>🎶 Peticiones Recibidas</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Nombre</th>
-        <th>Canción</th>
-        <th>Dedicatoria</th>
-        <th>Mensaje</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for fila in peticiones %}
-      <tr>
-        <td>{{ fila[0] }}</td>
-        <td>{{ fila[1] }}</td>
-        <td>{{ fila[2] }}</td>
-        <td>{{ fila[3] }}</td>
-        <td>{{ fila[4] }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+
+  <div class="tabla-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Nombre</th>
+          <th>Canción</th>
+          <th>Dedicatoria</th>
+          <th>Mensaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for fila in peticiones %}
+        <tr>
+          <td data-label="Fecha">{{ fila[0] }}</td>
+          <td data-label="Nombre">{{ fila[1] }}</td>
+          <td data-label="Canción">{{ fila[2] }}</td>
+          <td data-label="Dedicatoria">{{ fila[3] }}</td>
+          <td data-label="Mensaje">{{ fila[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
   <a href="/">⬅ Volver al formulario</a>
 </body>

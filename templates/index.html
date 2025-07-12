@@ -16,7 +16,7 @@
 
     <h1>Pide tu Canción</h1>
   
-    <p>Debes seguirme en Instagram y darle al botón de abajo para desbloquear el formulario de peticiones.</p>
+    <p style="font-size: 0.8rem;">Debes seguirme en Instagram y darle al botón de abajo para desbloquear el formulario de peticiones.</p>
 
     <a href="https://www.instagram.com/jalix_dj/" target="_blank" class="btn-instagram" onclick="desbloquearFormulario()">Sígueme en Instagram</a>
 
@@ -28,8 +28,18 @@
       <textarea name="mensaje" rows="3" placeholder="Un mensaje opcional..."></textarea>
       <button type="submit">Enviar petición</button>
     </form>
+    <div class="aviso">SINO ME SIGUES TE LA VA A PONER QUIEN YO ME SE</div>
+
+    
+    <div class="bizum">
+      <p style="margin-top: 1rem; font-size: 0.85rem;">
+        ¿Quieres asegurar que tu canción suene esta noche? 🎧
+      </p>
+      <p style="font-weight: bold; font-size: 1.1rem;">BIZUM: 617 651 107</p>
+      <button onclick="copiarBizum()" class="btn-bizum">Copiar número</button>
+    </div>
+    
   
-    <div class="aviso">Verificamos todas las peticiones manualmente.</div>
   </div>
 
   <script>
@@ -55,6 +65,11 @@
       });
 
       alert("¡Gracias por seguirme! Ya puedes enviar tu petición 🎶");
+    }
+    function copiarBizum() {
+      navigator.clipboard.writeText("617651107").then(function () {
+        alert("Número de Bizum copiado 📲");
+      });
     }
   </script>
 </body>
