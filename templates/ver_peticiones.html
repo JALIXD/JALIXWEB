@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Peticiones recibidas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #f472b6;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #334155;
+    }
+    tr:hover {
+      background-color: #1e293b;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background-color: #f472b6;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 Peticiones Recibidas</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Canción</th>
+        <th>Dedicatoria</th>
+        <th>Mensaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for fila in peticiones %}
+      <tr>
+        <td>{{ fila[0] }}</td>
+        <td>{{ fila[1] }}</td>
+        <td>{{ fila[2] }}</td>
+        <td>{{ fila[3] }}</td>
+        <td>{{ fila[4] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="/">⬅ Volver al formulario</a>
+</body>
+</html>

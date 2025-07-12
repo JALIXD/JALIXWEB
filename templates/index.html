@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pide tu Canción</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+  <div class="fondo"></div>
+
+  <div class="contenedor">
+    <h1>🎧 Pide tu Canción</h1>
+    <p>Sólo para seguidores de <strong>@jalix_dj</strong></p>
+
+    <form action="/enviar" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre o apodo" required>
+      <input type="text" name="cancion" placeholder="Canción que quieres" required>
+      <input type="text" name="dedicatoria" placeholder="¿Para quién es? (opcional)">
+      <textarea name="mensaje" placeholder="Mensaje extra (opcional)"></textarea>
+      <button type="submit" class="btn-principal">Enviar petición</button>
+    </form>
+
+    <a href="https://www.instagram.com/jalix_dj" target="_blank" class="btn-secundario">Seguir en Instagram</a>
+
+    <div class="aviso">
+      <p>Si no me sigues en Instagram, <strong>tu canción no será puesta.</strong><br>
+      Verificamos todas las peticiones.</p>
+    </div>
+
+    <footer>
+      <p>Hecho con ritmo por DJ JALIX 🎶</p>
+    </footer>
+  </div>
+</body>
+</html>
