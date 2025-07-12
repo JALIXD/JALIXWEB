@@ -1,10 +1,36 @@
-body {
+
+  * {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
     background: #000;
     color: white;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('/static/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
   }
-  
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 0;
+  }
+
   .fondo {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -12,26 +38,51 @@ body {
     opacity: 0.15;
     z-index: -1;
   }
-  
-  .contenedor {
+
+  .contenido {
+    position: relative;
+    z-index: 1;
+    width: 90%;
     max-width: 400px;
-    margin: auto;
-    padding: 2rem;
     background: rgba(0, 0, 0, 0.75);
+    padding: 2rem;
     border-radius: 15px;
-    text-align: center;
-    margin-top: 5vh;
+    margin-top: 2vh;
   }
-  
-  input, textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border-radius: 10px;
-    border: none;
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .logo {
+    width: 120px;
+    margin: 5px auto 15px;
+    display: block;
+  }
+
+  p {
+    margin-bottom: 20px;
     font-size: 1rem;
   }
-  
+
+  form input,
+  form textarea,
+  form button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  input, textarea {
+    background: #fff;
+    color: #000;
+  }
+
+  button,
   .btn-principal {
     background-color: #ff0066;
     color: white;
@@ -41,8 +92,14 @@ body {
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
+    transition: background 0.3s ease;
   }
-  
+
+  button:hover,
+  .btn-principal:hover {
+    background-color: #e91e63;
+  }
+
   .btn-secundario {
     display: inline-block;
     margin-top: 1rem;
@@ -52,7 +109,7 @@ body {
     border-radius: 10px;
     text-decoration: none;
   }
-  
+
   .aviso {
     margin-top: 1rem;
     background-color: rgba(255, 0, 100, 0.1);
@@ -61,10 +118,94 @@ body {
     border-radius: 10px;
     color: #fca5a5;
   }
-  
+
   footer {
     margin-top: 1rem;
     font-size: 0.9rem;
     color: #aaa;
   }
+
+  @media (min-width: 768px) {
+    .contenido {
+      max-width: 360px;
+    }
+  }
+  .btn-instagram {
+    display: inline-block;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+  }
   
+  .btn-instagram:hover {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 480px) {
+    .contenido {
+      width: 92%;
+      max-width: 280px;
+      margin-top: 6vh;
+      padding: 1rem;
+    }
+  
+    form input,
+    form textarea,
+    form button,
+    .btn-instagram {
+      font-size: 0.85rem;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+  
+    .logo {
+      width: 80px;
+      margin: 5px auto 10px;
+    }
+  
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+  
+    .aviso {
+      font-size: 0.7rem;
+      padding: 0.6rem;
+      margin-top: 0.8rem;
+    }
+  
+    .btn-instagram {
+      font-size: 0.85rem;
+      padding: 8px 12px;
+    }
+  }
+  
+  .formulario.bloqueado {
+    position: relative;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .formulario.bloqueado::after {
+    content: "🔒 Sigue a @jalix_dj para desbloquear el formulario";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    z-index: 10;
+  }
