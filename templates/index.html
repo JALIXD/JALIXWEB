@@ -2,36 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pide tu Canción</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pide tu Canción | DJ JALIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+  <style>
+
+  </style>
 </head>
 <body>
-  <div class="fondo"></div>
+  <div class="contenido">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="DJ JALIX Logo" class="logo">
 
-  <div class="contenedor">
-    <h1>🎧 Pide tu Canción</h1>
-    <p>Sólo para seguidores de <strong>@jalix_dj</strong></p>
+    <h1>Pide tu Canción</h1>
+  
+    <p>Debes seguirme en Instagram y darle al botón de abajo para desbloquear el formulario de peticiones.</p>
 
-    <form action="/enviar" method="POST">
-      <input type="text" name="nombre" placeholder="Tu nombre o apodo" required>
-      <input type="text" name="cancion" placeholder="Canción que quieres" required>
-      <input type="text" name="dedicatoria" placeholder="¿Para quién es? (opcional)">
-      <textarea name="mensaje" placeholder="Mensaje extra (opcional)"></textarea>
-      <button type="submit" class="btn-principal">Enviar petición</button>
+    <a href="https://www.instagram.com/jalix_dj/" target="_blank" class="btn-instagram" onclick="desbloquearFormulario()">Sígueme en Instagram</a>
+
+    <!-- Formulario inicialmente bloqueado -->
+    <form action="/enviar" method="POST" class="formulario bloqueado" id="formulario">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="text" name="cancion" placeholder="Nombre de la canción" required>
+      <input type="text" name="dedicatoria" placeholder="¿A quién se la dedicas?">
+      <textarea name="mensaje" rows="3" placeholder="Un mensaje opcional..."></textarea>
+      <button type="submit">Enviar petición</button>
     </form>
-
-    <a href="https://www.instagram.com/jalix_dj" target="_blank" class="btn-secundario">Seguir en Instagram</a>
-
-    <div class="aviso">
-      <p>Si no me sigues en Instagram, <strong>tu canción no será puesta.</strong><br>
-      Verificamos todas las peticiones.</p>
-    </div>
-
-    <footer>
-      <p>Hecho con ritmo por DJ JALIX 🎶</p>
-    </footer>
+  
+    <div class="aviso">Verificamos todas las peticiones manualmente.</div>
   </div>
+
+  <script>
+    // Deshabilita campos al cargar
+    window.onload = function () {
+      bloquearFormulario();
+    };
+
+    function bloquearFormulario() {
+      const campos = document.querySelectorAll('form input, form textarea, form button');
+      campos.forEach(campo => {
+        campo.disabled = true;
+      });
+    }
+
+    function desbloquearFormulario() {
+      const form = document.getElementById("formulario");
+      form.classList.remove("bloqueado");
+
+      const campos = form.querySelectorAll('input, textarea, button');
+      campos.forEach(campo => {
+        campo.disabled = false;
+      });
+
+      alert("¡Gracias por seguirme! Ya puedes enviar tu petición 🎶");
+    }
+  </script>
 </body>
 </html>
